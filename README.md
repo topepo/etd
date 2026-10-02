@@ -40,8 +40,8 @@ status <- c("left censored", rep("event", 3), "right censored")
 ```
 
 With etd, the `event_time()` function takes the time values as is and
-uses status values of “e” (events), “l” (left censored), “r” (right
-censored), or “i” (interval censored).
+uses status values of `"e"` (events), `"l"` (left censored), `"r"`
+(right censored), or `"i"` (interval censored).
 
 ``` r
 library(etd)
