@@ -1,0 +1,56 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# etd
+
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+The data structure for potentially censored data in the survival package
+has served the community well. However, it was created in the mid 1980’s
+for the S language.
+
+etd (Event Time Data) proposes a data structure that:
+
+- Is an R vctrs class (not a matrix)
+- Has more obvious status values (descriptive letters instead of integer
+  codes)
+- Can easily accommodate different types of censoring.
+
+## Installation
+
+You can install the development version of etd like so:
+
+``` r
+pak::pak("topepo/etd)
+```
+
+## Examples
+
+Suppose we have data with complete event times as well as left\_ and
+right censored data:
+
+``` r
+set.seed(1)
+observed_times <- sort(rexp(5))
+status <- c("left censored", rep("event", 3), "right censored")
+```
+
+With etd, the `event_time()` function takes the time values as is and
+uses status values of “e” (events), “l” (left censored), “r” (right
+censored), or “i” (interval censored).
+
+``` e
+library(etd)
+
+etd_obj <- event_time(observed_times, substr(status, 1, 1))
+etd_obj
+is.matrix(etd_obj)
+
+# Add to a data frame: 
+etd_df <- data.frame(times = etd_obj)
+etd_df
+```
