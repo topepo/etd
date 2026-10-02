@@ -48,7 +48,7 @@ status <- c("left censored", rep("event", 3), "right censored")
 
 With etd, the `event_time()` function takes the time values as is and uses status values of "e" (events), "l" (left censored), "r" (right censored), or "i" (interval censored). 
 
-```{e}
+```{r}
 library(etd)
 
 etd_obj <- event_time(observed_times, substr(status, 1, 1))
@@ -60,3 +60,26 @@ etd_df <- data.frame(times = etd_obj)
 etd_df
 ```
 
+
+When there are interval censored values in the data, the `time_max` argument is used. Here, `time` specifies the shorter duration and `time_max` is for the longer times. Suppose the first value i n our data was also right censored at 1.5:
+
+```{r}
+int_obj <- event_time(observed_times,
+                      status = c("i", "e", "e", "e", "r"),
+                      time_max = c(1.5, rep(NA_real_, 4)))
+int_obj
+is.matrix(int_obj)
+```
+
+To extract the individual components, there are extractor functions: 
+
+```{r}
+extract_time(etd_obj)
+extract_status(etd_obj)
+```
+
+and there are also conversion functions: 
+
+```{r}
+as_surv(etd_obj)
+as_tibble(etd_obj)
