@@ -13,11 +13,13 @@ S3method(tibble::as_tibble,event_time)
 S3method(vec_ptype_abbr,event_time)
 S3method(vec_ptype_full,event_time)
 export(as_surv)
+export(as_tibble)
 export(event_time)
 export(extract_status)
 export(extract_time)
 export(new_event_time)
 import(rlang)
+importFrom(tibble,as_tibble)
 importFrom(vctrs,
   field,
   new_rcrd,
