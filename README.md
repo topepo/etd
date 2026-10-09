@@ -25,7 +25,7 @@ etd (Event Time Data) proposes a data structure that:
 You can install the development version of etd like so:
 
 ``` r
-pak::pak("topepo/etd)
+pak::pak("topepo/etd")
 ```
 
 ## Examples
